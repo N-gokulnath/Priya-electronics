@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priya Electronics | Premium TV Services & Repair Gingee</title>
+  <meta name="description" content="Priya Electronics Gingee: Specialist repair shop for OLED, LED, LCD & Smart TVs. Professional diagnostics, genuine parts, rapid service, and real-time repair tracking.">
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="log.css">
+  <!-- Pre-load Theme Flash Prevention Script -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
+  <!-- Application Controller -->
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================
+     1. STICKY HEADER & FLOATING NAVIGATION
+     ========================================== -->
+  <header class="header-container">
+    <div class="nav-wrapper">
+      <a href="#" class="logo-container" id="nav-logo">
+        <div class="logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+        <span class="logo-text">PRIYA ELECTRONICS</span>
+      </a>
+      
+      <button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav id="navbar-links">
+        <a href="#" class="active" onclick="smoothScrollToTop(event)">Home</a>
+        <a href="#services" onclick="closeMobileNav()">Services</a>
+        <a href="#features" onclick="closeMobileNav()">Service Portal</a>
+        <a href="#testimonials" onclick="closeMobileNav()">Reviews</a>
+        <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+        <a href="#contact" onclick="closeMobileNav()">Location</a>
+        <button class="btn-theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle visual theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="btn btn-nav-portal" id="btn-portal-open" onclick="openCRMModal()">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Technician Panel
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================
+       2. HERO SECTION
+       ========================================== -->
+    <section class="hero-section" id="home">
+    <div class="container">
+
+      <div class="hero-content animate-slide-up">
+        <div class="hero-badge-container">
+          <div class="hero-badge">
+            <span class="dot"></span> 20+ Years Professional Expertise
+          </div>
+        </div>
+        <h1 class="text-gradient">Professional TV Services & Diagnostics</h1>
+        <p>Premium repairing, component troubleshooting, and smart configuration for LED, LCD, OLED, QLED, and Smart TVs in Gingee. We recover your entertainment experiences with precision diagnostics, original spares, and direct service warranty.</p>
+        
+        <div class="hero-cta">
+          <a href="#features" class="btn btn-primary" onclick="switchTab('book')">
+            <i class="fa-solid fa-calendar-check"></i> Book Repair Slot
+          </a>
+          <a href="#features" class="btn btn-secondary" onclick="switchTab('track')">
+            <i class="fa-solid fa-magnifying-glass"></i> Track Active Ticket
+          </a>
+        </div>
+
+        <!-- Elegant Left-Aligned Stats Row -->
+        <div class="hero-stats-row">
+          <div class="hero-stat-bullet">
+            <span class="hero-stat-bullet-icon success"><i class="fa-solid fa-house-chimney-medical"></i></span>
+            <div class="hero-stat-bullet-text">
+              <strong id="hero-stat-jobs">18+</strong> Repairs Resolved
+            </div>
+          </div>
+          
+          <div class="hero-stat-bullet">
+            <span class="hero-stat-bullet-icon primary"><i class="fa-solid fa-hourglass-half"></i></span>
+            <div class="hero-stat-bullet-text">
+              <strong>24 Hrs</strong> Diagnostic Turnaround
+            </div>
+          </div>
+          
+          <div class="hero-stat-bullet">
+            <span class="hero-stat-bullet-icon secondary"><i class="fa-solid fa-shield-halved"></i></span>
+            <div class="hero-stat-bullet-text">
+              <strong>90 Days</strong> Spares Warranty
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-illustration">
+        <!-- Kept empty to showcase the premium background repair cover photo -->
+      </div>
+    
+    </div>
+</section>
+
+    <!-- ==========================================
+       3. INTERACTIVE SERVICE PORTAL (TABS SECTION)
+       ========================================== -->
+    <section class="main-feature-section" id="features">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge badge-purple">Service Center Core Tools</span>
+        <h2 class="text-gradient">Interactive Service Hub</h2>
+        <p>Estimate repairs, register your appointment, or check your active status with our dynamic tools.</p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="tab-container">
+        <div class="tab-nav">
+          <button class="tab-btn active" id="tab-btn-estimate" onclick="switchTab('estimate')">
+            <i class="fa-solid fa-calculator"></i> Price Estimator
+          </button>
+          <button class="tab-btn" id="tab-btn-book" onclick="switchTab('book')">
+            <i class="fa-solid fa-calendar-plus"></i> Book Repair
+          </button>
+          <button class="tab-btn" id="tab-btn-track" onclick="switchTab('track')">
+            <i class="fa-solid fa-magnifying-glass"></i> Track Repair
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB PANEL 1: PRICING ESTIMATOR -->
+      <div class="tab-panel premium-panel active" id="panel-estimate">
+        <div class="estimator-layout" style="padding: 2.5rem;">
+          <div class="estimator-controls">
+            <h3 class="text-gradient" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Get Instant Price Guidance</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">Select your hardware model and display symptoms. Our system maps typical costs and turnaround timelines immediately.</p>
+            
+            <div class="form-group">
+              <label class="form-label" for="est-tv-type">TV Display Type</label>
+              <select class="form-select" id="est-tv-type" onchange="runCostEstimator()">
+                <option value="led">LED TV (Standard Dynamic Range)</option>
+                <option value="lcd">LCD TV (Legacy Panel)</option>
+                <option value="smart">Smart TV (Full HD / 4K UHD)</option>
+                <option value="oled">OLED / QLED TV (Premium Display)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="est-issue-type">Diagnostic Symptom</label>
+              <select class="form-select" id="est-issue-type" onchange="runCostEstimator()">
+                <option value="power">TV won't power on / Power LED blinking</option>
+                <option value="backlight">Sound OK but No Display (Backlight Failure)</option>
+                <option value="screen">Screen damage / Double images / Lines on screen</option>
+                <option value="sound">No Sound / Distorted audio / Speaker issues</option>
+                <option value="ports">HDMI Ports loose / Wi-Fi & USB Connectivity down</option>
+                <option value="software">Firmware update required / Smart UI boot-loop</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="premium-card estimator-result-card" id="estimator-result-card">
+            <!-- State 1: Awaiting calculation -->
+            <div class="result-placeholder" id="est-placeholder">
+              <i class="fa-solid fa-calculator"></i>
+              <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">Awaiting Parameters</h4>
+              <p style="font-size: 0.8rem; margin: 0;">Configure your TV specifications and issue categories to calculate an instant invoice estimate.</p>
+            </div>
+            
+            <!-- State 2: Displaying calculation -->
+            <div class="estimator-output" id="est-output">
+              <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Estimated Price Guidance</span>
+              <div class="price-display-box">
+                <span class="price-range" id="est-price-val">₹1,200 - ₹2,500</span>
+                <span class="price-label">Estimated Service Costs</span>
+              </div>
+              
+              <div class="estimator-stats">
+                <div class="est-stat-item">
+                  <h5 id="est-time-val">1 - 2 Days</h5>
+                  <p>Repairs Duration</p>
+                </div>
+                <div class="est-stat-item" style="border-left: 1px solid var(--border-color); padding-left: 2rem;">
+                  <h5 id="est-warranty-val">90 Days</h5>
+                  <p>Part Warranty</p>
+                </div>
+              </div>
+              
+              <p class="est-notice">
+                <i class="fa-solid fa-circle-info" style="color: var(--accent-tertiary); margin-right: 0.25rem;"></i> Includes components diagnostic charges. Final price may fluctuate depending on brand specific circuit motherboard availability and replacement panels.
+              </p>
+              
+              <button class="btn btn-primary" onclick="switchTab('book')" style="margin-top: 1rem; width: 100%;">
+                <i class="fa-solid fa-calendar-check"></i> Book Service for this Issue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB PANEL 2: BOOKING WIZARD -->
+      <div class="tab-panel premium-panel" id="panel-book">
+        <div class="wizard-box">
+          
+          <!-- Step Progress bar -->
+          <div class="wizard-stepper">
+            <div class="stepper-progress" id="wizard-progress"></div>
+            
+            <div class="step-node active" id="step-node-1">1
+              <span class="step-label">Contacts</span>
+            </div>
+            <div class="step-node" id="step-node-2">2
+              <span class="step-label">TV Details</span>
+            </div>
+            <div class="step-node" id="step-node-3">3
+              <span class="step-label">Schedule</span>
+            </div>
+          </div>
+
+          <!-- Wizard Step 1: Customer Contact details -->
+          <div class="wizard-step-panel active" id="wizard-step-1">
+            <h3 class="text-gradient" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">Contact Information</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem;">Please fill out your details so our Gingee support desk can follow up regarding your registered hardware diagnostics.</p>
+            
+            <div class="form-group">
+              <label class="form-label" for="booking-name">Your Full Name</label>
+              <input type="text" class="form-input" id="booking-name" placeholder="E.g., Gokul Nath" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="booking-phone">Contact Mobile Number</label>
+              <input type="tel" class="form-input" id="booking-phone" placeholder="E.g., +91 94864 01550" required>
+            </div>
+          </div>
+
+          <!-- Wizard Step 2: TV Brand & Issue Selection -->
+          <div class="wizard-step-panel" id="wizard-step-2">
+            <h3 class="text-gradient" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">Hardware Specifications & Issue Categories</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem;">Select your TV Display Type, Brand Manufacturer, and specify the issues you're experiencing.</p>
+            
+            <div class="form-group">
+              <label class="form-label" for="booking-tv-type">TV Hardware Format</label>
+              <select class="form-select" id="booking-tv-type">
+                <option value="LED TV">LED Television</option>
+                <option value="LCD TV">LCD Television</option>
+                <option value="Smart TV">Smart TV / Android TV</option>
+                <option value="OLED TV">OLED TV</option>
+                <option value="QLED TV">QLED TV</option>
+              </select>
+            </div>
+
+            <!-- TV Brand selectors -->
+            <div class="form-group">
+              <label class="form-label">Brand Manufacturer</label>
+              <div class="brand-grid" id="booking-brand-grid">
+                <div class="selection-card" data-brand="Samsung">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">Samsung</span>
+                </div>
+                <div class="selection-card" data-brand="LG">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">LG</span>
+                </div>
+                <div class="selection-card" data-brand="Sony">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">Sony</span>
+                </div>
+                <div class="selection-card" data-brand="Mi / Xiaomi">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">Mi / Xiaomi</span>
+                </div>
+                <div class="selection-card" data-brand="OnePlus">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">OnePlus</span>
+                </div>
+                <div class="selection-card" data-brand="TCL">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">TCL</span>
+                </div>
+                <div class="selection-card" data-brand="Realme">
+                  <i class="fa-solid fa-tv"></i>
+                  <span class="brand-name">Realme</span>
+                </div>
+                <div class="selection-card" data-brand="Other">
+                  <i class="fa-solid fa-wrench"></i>
+                  <span class="brand-name">Other Brand</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Issue check boxes -->
+            <div class="form-group">
+              <label class="form-label">Select Symptoms</label>
+              <div class="issue-grid" id="booking-issue-grid">
+                <div class="issue-card" data-issue="Power Supply failure">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-plug-circle-xmark"></i></div>
+                  <div class="issue-info">
+                    <h5>Power Issues</h5>
+                    <p>Won't turn on, indicator blinking, auto shut-off</p>
+                  </div>
+                </div>
+                <div class="issue-card" data-issue="Backlight / Blank Screen">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-images"></i></div>
+                  <div class="issue-info">
+                    <h5>Backlight Failure</h5>
+                    <p>Sound working but black screen, flickering backlight</p>
+                  </div>
+                </div>
+                <div class="issue-card" data-issue="Display Screen Damage">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-burst"></i></div>
+                  <div class="issue-info">
+                    <h5>Screen Issues</h5>
+                    <p>Lines on screen, distorted images, flickering display</p>
+                  </div>
+                </div>
+                <div class="issue-card" data-issue="Audio Speaker Distortions">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-volume-xmark"></i></div>
+                  <div class="issue-info">
+                    <h5>Sound Issues</h5>
+                    <p>No audio outputs, cracking sound, distorted speaker</p>
+                  </div>
+                </div>
+                <div class="issue-card" data-issue="Ports & Connectors Failure">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-circle-nodes"></i></div>
+                  <div class="issue-info">
+                    <h5>HDMI & USB Ports</h5>
+                    <p>Loose connectors, no signal detected, Wi-Fi errors</p>
+                  </div>
+                </div>
+                <div class="issue-card" data-issue="OS & Software issues">
+                  <div class="issue-icon-wrap"><i class="fa-solid fa-rotate"></i></div>
+                  <div class="issue-info">
+                    <h5>Software & Apps</h5>
+                    <p>System boot loop, smart interface crash, update failure</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="booking-comment">Describe the Problem (Optional)</label>
+              <textarea class="form-textarea" id="booking-comment" rows="3" placeholder="E.g., Backlight is very dim. Sound is perfectly clear..."></textarea>
+            </div>
+          </div>
+
+          <!-- Wizard Step 3: Scheduling Slot Picker -->
+          <div class="wizard-step-panel" id="wizard-step-3">
+            <h3 class="text-gradient" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">Select Booking Schedule</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem;">Please choose your preferred date and convenient time window for diagnostics evaluation.</p>
+            
+            <div class="booking-scheduling-grid">
+              <div class="form-group">
+                <label class="form-label" for="booking-date">Choose Appointment Date</label>
+                <input type="date" class="form-input" id="booking-date" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Convenient Time Window</label>
+                <div class="time-slot-grid" id="booking-slot-grid">
+                  <div class="slot-card selected" data-slot="Morning: 09:00 AM - 12:00 PM">
+                    <span class="slot-time"><i class="fa-regular fa-sun" style="margin-right: 0.5rem; color: var(--accent-warning);"></i> Morning slot</span>
+                    <span class="slot-period">09:00 AM - 12:00 PM</span>
+                  </div>
+                  <div class="slot-card" data-slot="Afternoon: 01:00 PM - 04:00 PM">
+                    <span class="slot-time"><i class="fa-solid fa-cloud-sun" style="margin-right: 0.5rem; color: var(--accent-primary);"></i> Afternoon slot</span>
+                    <span class="slot-period">01:00 PM - 04:00 PM</span>
+                  </div>
+                  <div class="slot-card" data-slot="Evening: 05:00 PM - 08:00 PM">
+                    <span class="slot-time"><i class="fa-regular fa-moon" style="margin-right: 0.5rem; color: var(--accent-secondary);"></i> Evening slot</span>
+                    <span class="slot-period">05:00 PM - 08:00 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wizard Actions Navigation Buttons -->
+          <div class="wizard-footer">
+            <button class="btn btn-secondary btn-disabled" id="btn-wizard-prev" onclick="navigateWizard(-1)">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <button class="btn btn-primary" id="btn-wizard-next" onclick="navigateWizard(1)">
+              Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Wizard Booking Complete Success Box -->
+          <div class="booking-success-box" id="wizard-success-box" style="display: none;">
+            <div class="success-icon-wrap">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-gradient" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Diagnostic Ticket Issued!</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">Your appointment slot has been successfully logged. Save the digital ticket code below to track real-time diagnostics updates on the portal.</p>
+            
+            <div class="ticket-display-box">
+              <span class="ticket-number" id="success-ticket-id">PE-2026-X8F9</span>
+              <button class="btn-copy" onclick="copyTicketId()" title="Copy Ticket Code" id="btn-copy-ticket">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            
+            <div style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 1.5rem;">
+              <button class="btn btn-secondary" onclick="resetBookingWizard()">
+                Book Another Device
+              </button>
+              <button class="btn btn-primary" onclick="switchToTrackerFromSuccess()">
+                <i class="fa-solid fa-location-crosshairs"></i> Track Progress
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB PANEL 3: TICKET TRACKER -->
+      <div class="tab-panel premium-panel" id="panel-track">
+        <div class="tracker-box">
+          <h3 class="text-gradient" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; text-align: center;">Enter Diagnostic Ticket Code</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; text-align: center; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Input the 11-digit service code (e.g., PE-2026-XXXX) issued during your appointment booking to inspect live repairs updates.</p>
+          
+          <div class="tracker-search-wrap">
+            <input type="text" class="form-input" id="tracker-search-input" placeholder="E.g., PE-2026-X8FA" maxlength="12">
+            <button class="btn btn-primary" onclick="trackTicketSearch()">
+              <i class="fa-solid fa-magnifying-glass"></i> Track Ticket
+            </button>
+          </div>
+
+          <!-- Live Tracking Stepper Results Box -->
+          <div class="tracker-display" id="tracker-display-panel">
+            <div class="tracker-header-info">
+              <div>
+                <div class="tracker-device-name" id="track-device-desc">Samsung 43" Smart LED TV</div>
+                <div class="tracker-date">Logged Appointment: <span id="track-logged-date">24-05-2026</span></div>
+              </div>
+              <span class="badge badge-blue" id="track-status-badge">Repairing</span>
+            </div>
+
+            <!-- Dynamic Progress timeline stepper -->
+            <div class="timeline-stepper">
+              <div class="timeline-progress-line" id="tracker-progress-line"></div>
+              
+              <!-- Timeline Step 1 -->
+              <div class="timeline-step" id="timeline-step-1">
+                <div class="timeline-node"><i class="fa-solid fa-check"></i></div>
+                <div class="timeline-content">
+                  <h4 class="timeline-title">Appointment Received</h4>
+                  <p class="timeline-desc">TV service ticket registered successfully. Device is scheduled for physical handover or diagnostics evaluation.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Step 2 -->
+              <div class="timeline-step" id="timeline-step-2">
+                <div class="timeline-node"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                <div class="timeline-content">
+                  <h4 class="timeline-title">Under Diagnostics</h4>
+                  <p class="timeline-desc">Our lead technician is running voltage checks, motherboard evaluation, and components inspection.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Step 3 -->
+              <div class="timeline-step" id="timeline-step-3">
+                <div class="timeline-node"><i class="fa-solid fa-fire"></i></div>
+                <div class="timeline-content">
+                  <h4 class="timeline-title">Active Repair Operations</h4>
+                  <p class="timeline-desc">Replacing micro components, backlight strip array integration, or smart firmware programming.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Step 4 -->
+              <div class="timeline-step" id="timeline-step-4">
+                <div class="timeline-node"><i class="fa-solid fa-vial-circle-check"></i></div>
+                <div class="timeline-content">
+                  <h4 class="timeline-title">Stress Testing & Quality Check</h4>
+                  <p class="timeline-desc">Running standard 3-hour temperature test, color display balancing, and port stress cycles.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Step 5 -->
+              <div class="timeline-step" id="timeline-step-5">
+                <div class="timeline-node"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="timeline-content">
+                  <h4 class="timeline-title">Ready for Pickup</h4>
+                  <p class="timeline-desc">TV repair completed. Ready for collection at VR Complex 1st Floor, Gingee. Invoice is prepared.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Technician personal update note card -->
+            <div class="tech-log-card" id="tracker-tech-card" style="display: none;">
+              <p class="tech-log-text" id="track-tech-comment">"Motherboard micro controller solder joints re-flowed. Display screen test cycle is currently stable. Stress testing is in progress."</p>
+            </div>
+          </div>
+
+          <!-- Tracking Not Found Error card -->
+          <div class="premium-card tracker-error-card" id="tracker-error-panel">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">Ticket Code Not Registered</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">We were unable to locate service record details matching that ticket code. Please confirm the number or contact Priya Electronics help desk directly at <a href="tel:+919486401550" style="color: var(--accent-primary); font-weight: 600;">9486401550</a>.</p>
+          </div>
+
+        </div>
+      </div>
+    
+    </div>
+</section>
+
+    <!-- ==========================================
+       4. SERVICES CATALOG GRID
+       ========================================== -->
+    <section class="services-section" id="services">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge badge-cyan">Services Portfolio</span>
+        <h2 class="text-gradient">Professional Solutions</h2>
+        <p>Comprehensive diagnostic and repair solutions tailored for high-end consumer televisions and electronics.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="premium-card service-card-wrapper">
+          <div class="service-icon-box">
+            <i class="fa-solid fa-tv"></i>
+          </div>
+          <h3>LED/LCD Screen Replacement</h3>
+          <p>Resolution of visual flickering, double images, horizontal lines, or vertical panel distortion. Precision micro soldering of source driver COF chips and premium LED backlight array replacement with heat-sink backing.</p>
+        </div>
+
+        <div class="premium-card service-card-wrapper">
+          <div class="service-icon-box">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3>Smart TV OS & Motherboard Repairs</h3>
+          <p>Motherboard circuit troubleshooting down to individual chip levels. Replacing power supply capacitors, MOSFET controllers, and EEPROM firmware programming to resolve smart interface boot loops and app crashes.</p>
+        </div>
+
+        <div class="premium-card service-card-wrapper">
+          <div class="service-icon-box">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3>Smart Calibration & Installation</h3>
+          <p>Premium home theater and TV wall mounting brackets installation. Dynamic color spectrum alignment, high-fidelity audio port configuration, and smart home IoT device syncing for maximum smart TV performance.</p>
+        </div>
+      </div>
+    
+    </div>
+</section>
+
+    <!-- ==========================================
+       5. CUSTOMER TESTIMONIALS SECTION
+       ========================================== -->
+    <section class="reviews-section" id="testimonials">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge badge-blue">Customer Feedback</span>
+        <h2 class="text-gradient">Verified Testimonials</h2>
+        <p style="margin-bottom: 0;">See why local families and corporate clients in Gingee trust Priya Electronics with their high-value display units.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="premium-card review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text">"My Samsung 55" Smart TV suddenly had sound but black screen. Took it to Priya Electronics. They diagnosed backlight failure and replaced the LED strip within a day. Fair price and brilliant professional service!"</p>
+          <div class="review-user">
+            <div class="review-user-avatar">R</div>
+            <div class="review-user-info">
+              <h4>Rajesh Kumar</h4>
+              <p>Gingee Resident</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="premium-card review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text">"Outstanding service! Our Mi TV was stuck in a boot loop cycle. The technician re-flashed the IC firmware on the motherboard, saving us from buying an expensive replacement motherboard. Fully recommended!"</p>
+          <div class="review-user">
+            <div class="review-user-avatar">A</div>
+            <div class="review-user-info">
+              <h4>Anjali Sharma</h4>
+              <p>Tech Professional, Gingee</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="premium-card review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-4-half"></i>
+          </div>
+          <p class="review-text">"Priya Electronics mounted our commercial TVs at our retail shop complex and calibrated their digital outputs. The screens are bright, crystal clear, and dynamic. Very professional and tidy work."</p>
+          <div class="review-user">
+            <div class="review-user-avatar">V</div>
+            <div class="review-user-info">
+              <h4>Vignesh K.</h4>
+              <p>Business Owner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+</section>
+
+    <!-- ==========================================
+       6. FAQ SECTION
+       ========================================== -->
+    <section class="faq-section" id="faq">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge badge-purple">Common Queries</span>
+        <h2 class="text-gradient">Frequently Asked Questions</h2>
+        <p>Got questions regarding repairs and evaluations? Check out our quick answers.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <span class="faq-question">What is your turnaround duration for initial TV diagnostics?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              We aim to conclude standard circuit diagnostics and display evaluations within 12 to 24 hours of device arrival at our shop. Once the physical check is done, we contact you immediately with a complete cost estimation.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <span class="faq-question">Do you offer home-pickup services or on-site screen replacement?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              For bracket mounting and software configurations, we support on-site home appointments in Gingee. However, core hardware operations like panel replacement and motherboard micro-soldering must be conducted inside our dust-free shop lab containing diagnostic devices.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <span class="faq-question">Do you provide a warranty on replaced hardware components?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Yes, absolutely! All genuine parts, power boards, and LED backlight array assemblies replaced by us carry a direct 90-day hardware warranty coverage. This guarantees repair quality and reliability.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header" onclick="toggleFaq(this)">
+            <span class="faq-question">Can you repair displays that have cracked screens or liquid damage?</span>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-content">
+              Liquid damage to display connector COF ribbons can be repaired using micro soldering bounds in some cases. If the actual glass screen panel is cracked, the panel must be completely replaced. Panel replacements depend on manufacturing parts availability.
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+</section>
+
+    <!-- ==========================================
+       7. CONTACT INFO & ACCESSIBILITY MAPS
+       ========================================== -->
+    <section class="contact-section" id="contact">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="badge badge-cyan">Reach Out</span>
+        <h2 class="text-gradient">Get In Touch</h2>
+        <p>Visit our diagnostics hub in Gingee or reach out via direct channels for rapid consultations.</p>
+      </div>
+
+      <div class="contact-layout">
+        
+        <!-- Live Styled Map Mockup Panel -->
+        <div class="premium-panel map-widget-panel">
+          <h3 class="text-gradient" style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.2rem;">Physical Map Coordinate</h3>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 1rem 0;">Click on map indicator to launch navigation directly in Google Maps.</p>
+          
+          <div class="map-container-mock">
+            <a href="https://maps.app.goo.gl/LhG78PegFEKFcSQZ6" target="_blank" class="map-radar-glow" aria-label="Open location in Google Maps">
+              <i class="fa-solid fa-location-dot"></i>
+            </a>
+            
+            <div class="map-label-card">
+              <div class="map-label-text">
+                <h5>Priya Electronics</h5>
+                <p>Gandhi Road, VR Complex, Gingee</p>
+              </div>
+              <a href="https://maps.app.goo.gl/LhG78PegFEKFcSQZ6" target="_blank" class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; border-radius: var(--radius-sm);">
+                Navigate <i class="fa-solid fa-compass" style="margin-left: 0.2rem;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Cards list -->
+        <div class="contact-info-list">
+          <div class="premium-card contact-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Shop Address</h4>
+              <p>Priya Electronics,<br>Gandhi Road, VR Complex, 1st Floor,<br>Gingee, Tamil Nadu - 604210.</p>
+            </div>
+          </div>
+
+          <div class="premium-card contact-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Telecommunications & Messaging</h4>
+              <p>Call Shop Owner: <a href="tel:+919486401550">+91 94864 01550</a><br>Queries via Email: <a href="mailto:gokulnath2010@gmail.com">gokulnath2010@gmail.com</a></p>
+              
+              <div class="contact-quick-actions">
+                <a href="tel:+919486401550" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+                  <i class="fa-solid fa-phone"></i> Call Direct
+                </a>
+                <a href="https://wa.me/919486401550?text=Hello%20Priya%20Electronics%2C%20I%20have%20an%20issue%20with%20my%20TV..." target="_blank" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp Chat
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="premium-card contact-card">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Operations Hours</h4>
+              <p>Monday - Saturday: 09:00 AM - 08:30 PM<br>Sunday: 10:00 AM - 02:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
+    </div>
+</section>
+  </main>
+
+  <!-- ==========================================
+     8. TECHNICIAN PORTAL CRM (MODAL SCREEN)
+     ========================================== -->
+  <div class="modal-overlay" id="crm-modal-overlay">
+    <div class="premium-panel dashboard-modal">
+      
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <h2 class="text-gradient" style="font-weight: 800; font-size: 1.5rem;">Technician Dashboard</h2>
+        </div>
+        <button class="modal-close" onclick="closeCRMModal()">&times;</button>
+      </div>
+
+      <!-- CRM Portal Login view -->
+      <div class="premium-card modal-login-card animate-fade-in" id="crm-login-block">
+        <i class="fa-solid fa-lock" style="font-size: 2.25rem; color: var(--accent-secondary); margin-bottom: 1rem;"></i>
+        <h3>Security Gate</h3>
+        <p>Unlock the repair tracking queue control database. Use password <strong>1234</strong> or developer mode bypass.</p>
+        
+        <div class="form-group" style="text-align: left;">
+          <label class="form-label" for="crm-pass-input">Technician Passcode</label>
+          <input type="password" class="form-input" id="crm-pass-input" placeholder="Enter PIN (e.g. 1234)" onkeydown="checkCRMLoginEnter(event)">
+          <div id="crm-login-error" style="color: var(--accent-danger); font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem; display: none;">
+            <i class="fa-solid fa-circle-exclamation"></i> Incorrect PIN. Please try again.
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem;">
+          <button class="btn btn-secondary" onclick="closeCRMModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="submitCRMLogin()">Unlock Panel</button>
+        </div>
+      </div>
+
+      <!-- CRM Portal Main Dashboard Workstation (Hidden until authenticated) -->
+      <div class="modal-body animate-fade-in" id="crm-workstation" style="display: none;">
+        
+        <!-- Quick stats cards -->
+        <div class="dashboard-stats-grid">
+          <div class="dashboard-stat-card">
+            <div class="dash-stat-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div class="dash-stat-info">
+              <h3 id="crm-stat-total">8</h3>
+              <p>Total Jobs Logged</p>
+            </div>
+          </div>
+
+          <div class="dashboard-stat-card">
+            <div class="dash-stat-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--accent-warning);">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <div class="dash-stat-info">
+              <h3 id="crm-stat-active">3</h3>
+              <p>Active Repairs</p>
+            </div>
+          </div>
+
+          <div class="dashboard-stat-card">
+            <div class="dash-stat-icon" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-success);">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="dash-stat-info">
+              <h3 id="crm-stat-completed">5</h3>
+              <p>Completed Jobs</p>
+            </div>
+          </div>
+
+          <div class="dashboard-stat-card">
+            <div class="dash-stat-icon" style="background: rgba(6, 182, 212, 0.1); color: var(--accent-tertiary);">
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+            </div>
+            <div class="dash-stat-info">
+              <h3 id="crm-stat-revenue">₹18,500</h3>
+              <p>Est. Gross Month</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search and filters -->
+        <div class="form-group" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; justify-content: space-between;">
+          <h3 class="text-gradient" style="font-size: 1.15rem; font-weight: 800; margin: 0;">Live Repair Queue</h3>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Persistence Engine: Web LocalStorage</span>
+        </div>
+
+        <!-- Repairs Job queue datatable -->
+        <div class="table-container">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Client Details</th>
+                <th>TV Brand & Type</th>
+                <th>Booking Slot</th>
+                <th>Status Badge</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crm-table-body">
+              <!-- Rendered via JavaScript -->
+              <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 3rem 0;">No active repair jobs in database.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRM Update Secondary Modal Slide-over (For updating ticket details) -->
+  <div class="edit-panel-overlay" id="crm-edit-overlay">
+    <div class="premium-panel premium-card edit-panel-card animate-slide-up">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+        <h3 class="text-gradient" style="font-size: 1.15rem; font-weight: 800; margin: 0;"><i class="fa-solid fa-pen-to-square"></i> Edit Service Status</h3>
+        <button class="modal-close" style="width: 28px; height: 28px; font-size: 1.25rem;" onclick="closeCRMEditPanel()">&times;</button>
+      </div>
+
+      <input type="hidden" id="edit-ticket-id">
+      
+      <div class="form-group">
+        <label class="form-label">Client Name</label>
+        <div style="font-weight: 700; color: var(--text-primary);" id="edit-client-name">-</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Device Specifics</label>
+        <div style="font-weight: 600; color: var(--text-secondary);" id="edit-device-desc">-</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="edit-status-select">Update Operations Status</label>
+        <select class="form-select" id="edit-status-select">
+          <option value="Received">Appointment Received (Step 1)</option>
+          <option value="Diagnostics">Under Diagnostics (Step 2)</option>
+          <option value="Repairing">Active Repair Operations (Step 3)</option>
+          <option value="QC">Stress Testing & Quality Check (Step 4)</option>
+          <option value="Ready">Ready for Pickup (Step 5)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="edit-tech-comment">Technician Progress Updates</label>
+        <textarea class="form-textarea" id="edit-tech-comment" rows="3" placeholder="Explain repair details..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: flex-end; border-top: 1px solid var(--border-color); padding-top: 1.25rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="closeCRMEditPanel()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveCRMOrderUpdate()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+     9. FOOTER SECTION
+     ========================================== -->
+  <footer>
+    <div class="container" style="padding-top: 0; padding-bottom: 0;">
+      <div class="footer-layout">
+        <a href="#" class="footer-logo" onclick="smoothScrollToTop(event)">
+          <div class="footer-logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <span style="font-weight: 800; letter-spacing: -0.02em;">PRIYA ELECTRONICS</span>
+        </a>
+        
+        <div class="footer-nav">
+          <a href="#services">Services</a>
+          <a href="#features" onclick="switchTab('estimate')">Estimator</a>
+          <a href="#features" onclick="switchTab('book')">Book Appointment</a>
+          <a href="#features" onclick="switchTab('track')">Track Order</a>
+          <a href="#faq">FAQs</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-credits">
+        <p>&copy; 2026 Priya Electronics. Gingee VR Complex 1st Floor. All Rights Reserved.</p>
+        <p style="font-size: 0.75rem;">Created for our family shop in India with <i class="fa-solid fa-heart" style="color: var(--accent-danger);"></i> by Gokul Nath</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
